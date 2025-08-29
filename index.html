@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ลงทะเบียนผู้ป่วย</title>
+</head>
+<body>
+<h2>ลงทะเบียน LINE User</h2>
+<form id="regForm">
+  HN: <input type="text" name="hn" required><br>
+  วันเกิด (YYYY-MM-DD): <input type="text" name="dob" required><br>
+  LINE User ID: <input type="text" name="line_user_id" required><br>
+  <button type="submit">ลงทะเบียน</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+document.getElementById("regForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    var formData = new FormData(this);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://yourserver.com/api/register.php", true); // URL API ของคุณ
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4){
+            document.getElementById("result").innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send(formData);
+});
+</script>
+</body>
+</html>
